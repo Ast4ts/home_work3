@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  db: 
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_USER=itea
+      - MYSQL_PASSWORD=itea
+      - MYSQL_DATABASE=itea
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+  backend:
+    build: ./dummy-backend
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    restart: always
+    command: sh -c '/app/deploy.sh'
+  frontend:
+    build: ./vue-paper-dashboard
+    ports:
+      - 8080:8080
+      
