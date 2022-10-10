@@ -3,6 +3,7 @@ version: '3.1'
 services:
   db: 
     image: mariadb:latest
+    container_name: db
     ports:
       - 3306:3306
     restart: always
@@ -11,8 +12,11 @@ services:
       - MYSQL_PASSWORD=itea
       - MYSQL_DATABASE=itea
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    volumes:
+      - ./mysql/mysql.sql:/docker-entrypoint-initdb.d/1.sql
   backend:
     build: ./dummy-backend
+    container_name: backend
     ports:
       - 8000:8000
     depends_on:
@@ -21,6 +25,6 @@ services:
     command: sh -c '/app/deploy.sh'
   frontend:
     build: ./vue-paper-dashboard
+    container_name: frontend
     ports:
       - 8080:8080
-      
