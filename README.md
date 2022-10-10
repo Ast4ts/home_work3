@@ -1,6 +1,6 @@
 # Deploy project in docker with docker-compose
 
-## Installation
+## Installation:
 
 * First
 ```
