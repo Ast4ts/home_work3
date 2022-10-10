@@ -1,5 +1,13 @@
 # Deploy project in docker with docker-compose
 
+## Installation
+
+* First
 ```
-docker compose up -d
+change host to yours in server.js
+```
+
+* Second
+```
+docker compose up -d --build
 ```
